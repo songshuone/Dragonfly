@@ -180,6 +180,7 @@ func IsRegularFile(name string) bool {
 	return f.Mode().IsRegular()
 }
 
+// 给一个文件生成md5
 // Md5Sum generate md5 for a given file
 func Md5Sum(name string) string {
 	if !IsRegularFile(name) {

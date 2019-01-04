@@ -58,6 +58,7 @@ func initConfig(args []string) {
 	cfg.Ctx.ClientLogger.Infof("context:%s", cfg.Ctx)
 }
 
+// 初始化 /etc/dragonfly.yaml /etc/dragonfly.conf
 func initProperties() {
 	for _, v := range cfg.Ctx.ConfigFiles {
 		if err := cfg.Props.Load(v); err == nil {

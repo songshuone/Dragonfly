@@ -110,7 +110,7 @@ func (p *Properties) loadFromIni(path string) error {
 			Address string
 		}
 	}{}
-
+	// 去读文件到 old config
 	if err := gcfg.ReadFileInto(&oldConfig, path); err != nil {
 		// only fail on a fatal error occurred
 		if e, ok := err.(warnings.List); !ok || e.Fatal != nil {
@@ -134,7 +134,7 @@ func (p *Properties) loadFromYaml(path string) error {
 }
 
 func (p *Properties) fileType(path string) string {
-	ext := filepath.Ext(path)
+	ext := filepath.Ext(path) // 获取文件的后缀
 	switch v := strings.ToLower(ext); v {
 	case ".conf", ".ini":
 		return "ini"
@@ -335,6 +335,7 @@ func checkOutput(ctx *Context) error {
 	return nil
 }
 
+// 下载 任务时的变量
 // RuntimeVariable stores the variables that are initialized and used
 // at downloading task executing.
 type RuntimeVariable struct {

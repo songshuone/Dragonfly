@@ -64,6 +64,7 @@ type P2PDownloader struct {
 	total    int64
 }
 
+// piece 片
 func (p2p *P2PDownloader) init() {
 	p2p.node = p2p.RegisterResult.Node
 	p2p.taskID = p2p.RegisterResult.TaskID

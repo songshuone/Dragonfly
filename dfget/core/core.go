@@ -50,6 +50,7 @@ func Start(ctx *config.Context) *errors.DFGetError {
 		result       *regist.RegisterResult
 	)
 
+	// 打印时间  和 defget url
 	util.Printer.Println(fmt.Sprintf("--%s--  %s",
 		ctx.StartTime.Format(config.DefaultTimestampFormat), ctx.URL))
 
@@ -78,6 +79,8 @@ func prepare(ctx *config.Context) (err error) {
 	util.Printer.Printf("dfget version:%s", version.DFGetVersion)
 	util.Printer.Printf("workspace:%s sign:%s", ctx.WorkHome, ctx.Sign)
 	ctx.ClientLogger.Infof("target file path:%s", ctx.Output)
+
+	// 实际下载 逻辑处理
 
 	rv := &ctx.RV
 
@@ -246,6 +249,7 @@ func checkConnectSupernode(nodes []string) (localIP string) {
 		if len(nodeFields) == 2 {
 			port, _ = strconv.Atoi(nodeFields[1])
 		}
+		// ping super node
 		if localIP, e = util.CheckConnect(nodeFields[0], port, 1000); e == nil {
 			return localIP
 		}
