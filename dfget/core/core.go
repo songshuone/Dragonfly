@@ -150,6 +150,7 @@ func downloadFile(ctx *config.Context, supernodeAPI api.SupernodeAPI,
 	register regist.SupernodeRegister, result *regist.RegisterResult) error {
 	var getter downloader.Downloader
 	if ctx.BackSourceReason > 0 {
+		// 自己下载
 		getter = downloader.NewBackDownloader(ctx, result)
 	} else {
 		util.Printer.Printf("start download by dragonfly")

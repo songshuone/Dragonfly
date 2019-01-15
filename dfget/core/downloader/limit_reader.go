@@ -32,6 +32,7 @@ func NewLimitReader(src io.Reader, rate int, calculateMd5 bool) *LimitReader {
 	var md5sum hash.Hash
 	if calculateMd5 {
 		md5sum = md5.New()
+
 	}
 	if rate <= 0 {
 		rate = 10 * 1024 * 1024

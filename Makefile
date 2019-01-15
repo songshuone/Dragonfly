@@ -51,7 +51,7 @@ build-dfget: build-dirs
 	@docker run                                                            \
 	    --rm                                                               \
 	    -ti                                                                \
-	    -u $$(id -u):$$(id -g)                                             \
+	    -u $$(id -u):$$(id -g)v                                             \
 	    -v $$(pwd)/.go:/go                                                 \
 	    -v $$(pwd):/go/src/$(PKG)                                          \
 	    -v $$(pwd)/$(BUILD_PATH):/go/bin                                   \

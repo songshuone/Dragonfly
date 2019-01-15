@@ -75,7 +75,12 @@ func (pc *PowerClient) Run() (err error) {
 
 		buf := make([]byte, 256*1024)
 		pieceCont := bytes.NewBuffer(buf)
+
+		pc.ctx.ClientLogger.Infof("pieceMD5========> %s", pieceMD5)
+
 		reader := NewLimitReader(resp.Body, pc.ctx.LocalLimit, pieceMD5 != "")
+
+		// 读取片大小
 		total, err := pieceCont.ReadFrom(reader)
 		pc.ctx.ClientLogger.Infof("get pieceCont total: %d", total)
 		if err != nil {
@@ -89,6 +94,7 @@ func (pc *PowerClient) Run() (err error) {
 			pc.ctx.ClientLogger.Errorf("piece range:%s error,realMd5:%s,expectedMd5:%s,dstIp:%s,total:%d", pc.pieceTask.Range, realMd5, pieceMD5, dstIP, total)
 			return fmt.Errorf("md5 not match, expected:%s real:%s", pieceMD5, realMd5)
 		}
+
 		piece := NewPieceContent(pc.taskID, pc.node, pc.pieceTask.Cid, pc.pieceTask.Range, config.ResultSemiSuc, config.TaskStatusRunning, pieceCont)
 		// NOTE should unify the type
 		piece.PieceSize = int32(pc.pieceTask.PieceSize)
