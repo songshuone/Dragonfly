@@ -249,6 +249,7 @@ func initParam(options *options.Options) {
 		Registry:      options.Registry,
 		TrustHosts:    parsedTrustHosts,
 		SupernodeList: options.SupernodeList,
+		Resolver:      options.Resolver,
 	}
 
 	initProperties(options)

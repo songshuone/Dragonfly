@@ -60,6 +60,9 @@ type CommandParam struct {
 
 	// SupernodeList specify supernode list.
 	SupernodeList []string
+
+	// resolver dns server
+	Resolver string
 }
 
 var (
